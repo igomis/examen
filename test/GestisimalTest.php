@@ -14,6 +14,7 @@ class GestisimalTest extends TestCase
 
     function testfindAll(){
         $conn = connexio();
+        deleteProd($conn,100);
         $result = findAll($conn);
         $first = $result[0];
         $this->assertIsArray($result);
@@ -27,7 +28,6 @@ class GestisimalTest extends TestCase
     }
 
 
-
     function testAddDeleteProd(){
         $conn = connexio();
         addProd($conn,['codi'=>100,'descripcio'=>'hola','preuCompra'=>0,'preuVenda'=>5,'stock'=>12]);
@@ -37,8 +37,6 @@ class GestisimalTest extends TestCase
         $this->expectException(\Exception::class);
         deleteProd($conn,100);
     }
-
-
 
     function testModifyProd(){
         $conn = connexio();
@@ -51,13 +49,12 @@ class GestisimalTest extends TestCase
 
     function testPlusProd(){
         $conn = connexio();
-        addProd($conn,['codi'=>100,'descripcio'=>'hola','preuCompra'=>0,'preuVenda'=>5,'stock'=>12]);
+        addProd($conn,['codi'=>100,'descripcio'=>'hola','preuCompra'=>0,'preuVenda'=>5,'stock'=>13]);
         plusProd($conn,100);
         $result = findProd($conn,100);
-        $this->assertEquals(13,$result->stock);
+        $this->assertEquals(14,$result->stock);
         deleteProd($conn,100);
     }
-
 
     function testMinusProd(){
         $conn = connexio();
@@ -67,7 +64,6 @@ class GestisimalTest extends TestCase
         $this->assertEquals(0,$result->stock);
         $this->expectException(\Exception::class);
         minusProd($conn,100);
-        deleteProd($conn,100);
     }
 
     function testScriptTagsAll(){

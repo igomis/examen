@@ -28,6 +28,29 @@ $conn = connexio();
         <h2>Dades del producte &raquo; Modificar dades</h2>
         <hr />
 
+        <?php
+        try {
+            $nik = strip_tags($_GET["nik"],ENT_QUOTES);
+            $producte = findProd($conn,$nik);
+        }catch (Exception $e){
+            echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>'.$e->getMessage().' !</div>';
+            exit();
+        }
+
+        if(isset($_POST['update'])){
+            $producto = $_POST;
+            unset($producto['update']);
+            scriptTagsAll($producto);
+            try{
+                modifyProd($conn,$producto);
+                echo '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Bien hecho! Los datos han sido guardados con éxito.</div>';
+            }catch (Exception $e){
+                echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>'.$e->getMessage().' !</div>';
+
+            }
+        }
+        ?>
+
         <form class="form-horizontal" action="" method="post">
             <div class="form-group">
                 <label class="col-sm-3 control-label">Codi</label>

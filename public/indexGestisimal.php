@@ -30,7 +30,45 @@ $conn = connexio();
         <h2>Magatzem GESTISIMAL</h2>
         <hr />
 
-
+        <?php
+        if(isset($_POST['afegir'])){
+            $producto = $_POST;
+            unset($producto['afegir']);
+            addProd($conn,$producto);
+        }
+        if(isset($_GET['aksi']) && $_GET['aksi'] == 'delete'){
+            $nik = strip_tags($_GET["nik"],ENT_QUOTES);
+            try {
+                findProd($conn, $nik);
+                deleteProd($conn,$nik);
+                echo '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> Dades eliminades correctament.</div>';
+            }
+            catch (Exception $e){
+                echo '<div class="alert alert-info alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>'.$e->getMessage().'</div>';
+            }
+        }
+        if(isset($_GET['aksi']) && $_GET['aksi'] == 'plus'){
+            $nik = strip_tags($_GET["nik"],ENT_QUOTES);
+            try {
+                plusProd($conn,$nik);
+                echo '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> Dades Modificades correctament.</div>';
+            }
+            catch (Exception $e){
+                echo '<div class="alert alert-info alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>'.$e->getMessage().'</div>';
+            }
+        }
+        if(isset($_GET['aksi']) && $_GET['aksi'] == 'minus'){
+            $nik = strip_tags($_GET["nik"],ENT_QUOTES);
+            try {
+                minusProd($conn,$nik);
+                echo '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> Dades modificades correctament.</div>';
+            }
+            catch (Exception $e){
+                echo '<div class="alert alert-info alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>'.$e->getMessage().'</div>';
+            }
+        }
+        $productos = findAll($conn);
+        ?>
         <div class="table-responsive">
             <table class="table table-striped table-hover">
                 <tr>
@@ -41,7 +79,9 @@ $conn = connexio();
                     <th>Stock</th>
                     <th>Operacions</th>
                 </tr>
-
+                <?php
+                foreach ($productos as $producto) {
+                    ?>
                     <tr>
                         <td><?= $producto->codi ?></td>
                         <td><?= $producto->descripcio ?></td>
@@ -55,7 +95,9 @@ $conn = connexio();
                             <a href="indexGestisimal.php?aksi=minus&nik=<?= $producto->codi ?>" title="Restar Unitat" class="btn btn-primary btn-sm">-</a>
                         </td>
                     </tr>
-
+                    <?php
+                }
+                ?>
                 <tr>
                     <form method="post" >
                         <td><input type="text" name="codi" style="width: 3em"></td>

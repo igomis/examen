@@ -8,43 +8,29 @@
 
 class DauPoker
 {
-    /**
-     * @var
-     */
     private $valor;
 
-    /**
-     * DauPoker constructor.
-     */
     public function __construct()
     {
-
+        $this->valor = rand(0,5);
     }
 
-    /**
-     *  Mostra l'imatge del valor del dau
-     */
     public function showFigure()
     {
-
+        return "<img src='/img/".$this->Figure().".png' width='80' height='80' />";
     }
 
-    /**
-     *  Torna la puntuació del dau
-     */
     public function score()
     {
-
+        return $this->valor+1;
     }
 
-
-    /**
-     * @param int $valor
-     * Assigna un valor al dau
-     */
     public function setValor(int $valor){
-
+        $this->valor = $valor;
     }
 
-
+    private function Figure(){
+        $figure = ['7','8','J','Q','K','A'];
+        return $figure[$this->valor];
+    }
 }
