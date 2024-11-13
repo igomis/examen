@@ -13,7 +13,7 @@ class Database {
         $dbConfig =  require  $_SERVER['DOCUMENT_ROOT'] . '/../config/db.php';
 
         try {
-            $dsn = "mysql:host=" . $dbConfig['host'] . ";dbname=" . $dbConfig['dbname'];
+            $dsn = "mysql:host=" . $dbConfig['host'] . ";dbname=" . $dbConfig['db_name'];
             $db = new  PDO($dsn, $dbConfig['username'], $dbConfig['password']);
             $db->setAttribute( PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
         } catch  (PDOException $e) {

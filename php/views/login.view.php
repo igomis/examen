@@ -24,6 +24,13 @@
         <label for="password">Contrasenya:</label>
         <input type="password" id="password" name="password" required>
 
+        <label for="idioma">Selecciona l'idioma:</label>
+        <select name="idioma" id="idioma">
+            <?php
+            // TODO
+            ?>
+        </select>
+
         <button type="submit">Iniciar sessió</button>
     </form>
 </div>

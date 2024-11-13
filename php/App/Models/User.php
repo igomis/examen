@@ -1,5 +1,5 @@
 <?php
-
+// App/models/User.php
 namespace Examen\Models;
 
 use Examen\Services\Database;
@@ -8,7 +8,7 @@ use PDO;
 class User {
     private $db;
 
-    public function __construct()   {
+    public function __construct( ) {
         $this->db = Database::connect();
     }
 

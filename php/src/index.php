@@ -3,10 +3,9 @@ session_start();
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/../vendor/autoload.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/../Helpers/functions.php';
-
+$idiomes = require  $_SERVER['DOCUMENT_ROOT'] . '/../config/languages.php';
 
 use Examen\Controllers\UserController;
-
 
 $userController = new UserController();
 
@@ -15,14 +14,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'];
     $idioma = $_POST['idioma'];
 
-    if ($userController->login($username, $password)) {
+    if ($userController::login($username, $password)) {
         setcookie('idioma', $idioma, time() + (86400 * 30), "/"); // 30 dies
-        header("Location: ../views/welcome.php");
+        header("Location: index.php");
         exit();
-    } else {
-        echo "Usuari o contrasenya incorrectes.";
+    }
+} else {
+    if ($userController::isAuthenticated()) {
+        loadView('home');
+        exit();
     }
 }
 
-loadView('login');
+loadView('login', compact('idiomes'));
 
