@@ -7,12 +7,11 @@
     <title>Afegir Producte</title>
 </head>
 <body>
-<?php include_once ($_SERVER['DOCUMENT_ROOT'].'/../views/partials/menu.php') ?>
 <div class="container">
 <h1>Afegir Producte</h1>
 
 
-<form action="products.php"  method="post">
+<form action="index.php"  method="post">
     <label for="nom">Nom del producte:</label>
     <input type="text" id="nom" name="nom" required>
 
@@ -22,7 +21,7 @@
     <button type="submit">Afegir Producte</button>
 </form>
 
-<a href="products.php">Tornar a la llista de productes</a>
+<a href="index.php">Tornar a la llista de productes</a>
 </div>
 </body>
 
