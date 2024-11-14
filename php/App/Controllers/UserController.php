@@ -13,12 +13,9 @@ class UserController {
     }
 
     public function login($username, $password) {
-        $user = $this->userModel->findUser($username, $password);
-        if ($user) {
-            //TODO
-            return true;
-        }
-        return false;
+        $user = $this->userModel->findUser($username);
+        // TODO implementar la comprobación de la contraseña i la creación de la sessió
+
     }
 
 

@@ -5,15 +5,6 @@
 CREATE DATABASE IF NOT EXISTS examen_db;
 USE examen_db;
 
--- Create users table
-CREATE TABLE IF NOT EXISTS usuaris (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(50) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL
-);
-
-INSERT INTO usuaris (username, password) VALUES ('secureuser', '$2b$12$F3EBIC3UgnzHVa5OLEdiKeGGjOF0T2AwoBuplF50PM2b7OizK3uU.');
-
 -- Create products table
 CREATE TABLE IF NOT EXISTS productes (
     id INT AUTO_INCREMENT PRIMARY KEY,

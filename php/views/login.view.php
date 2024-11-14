@@ -15,7 +15,12 @@
     <title>LOGIN</title>
 </head>
 <body>
- <div class="login">
+<?php if (!empty($error)): ?>
+    <div class="error">
+        <?=$error;?>
+    </div>
+<?php endif; ?>
+<div class="login">
     <h1>LOGIN</h1>
     <form method="POST" action="index.php">
         <label for="username">Nom d'usuari:</label>
