@@ -10,7 +10,7 @@
 <div class="container">
 <h1>Editar Producte</h1>
 
-<form action="index.php" method="post">
+<form action="update_product.php" method="post">
     <input type="hidden" name="id" value="">
     <label for="nom">Nom del producte:</label>
     <input type="text" id="nom" name="nom" value="" required>

@@ -7,7 +7,7 @@
     <title>Gestió de Productes</title>
 </head>
 <body>
-<?php include_once ($_SERVER['DOCUMENT_ROOT'].'/../views/partials/menu.php') ?>
+
 <div class="container">
 <h1>Gestió de Productes</h1>
 
