@@ -10,6 +10,7 @@
         <select name="idioma">
 
         </select>
+        <input type="submit" value="Enviar">
     </form>
 </body>
 </html>
